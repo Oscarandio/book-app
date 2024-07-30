@@ -1,14 +1,13 @@
-'use client';
-
-import { useState } from 'react';
-import BookCard from '../components/BookCard';
+// pages/index.tsx
+import React, { useState } from 'react';
+import BookCard from '../../components/BookCard';
 
 const Home: React.FC = () => {
   const [books, setBooks] = useState([]);
 
   const searchBooks = async (query: string) => {
     const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyCfheD5T1EkGQspFI9S9QAGXKkK7_YMYSw`
+      `https://www.googleapis.com/books/v1/volumes?q=${query}&key=YOUR_API_KEY`
     );
     const data = await response.json();
     setBooks(data.items);
@@ -17,11 +16,11 @@ const Home: React.FC = () => {
   return (
     <div>
       <h1>Book Finder</h1>
-      {/* <input
+      <input
         type='text'
         onChange={(e) => searchBooks(e.target.value)}
         placeholder='Search for books'
-      /> */}
+      />
       <div className='book-list'>
         {books.map((book: any) => (
           <BookCard
