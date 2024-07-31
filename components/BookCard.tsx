@@ -10,7 +10,7 @@ interface BookCardProps {
 const BookCard: React.FC<BookCardProps> = ({ title, authors, thumbnail }) => {
   return (
     <div className='book-card'>
-      <Image src={thumbnail} alt={`${title} cover`} />
+      <Image src={thumbnail} alt={`${title} cover`} width={100} height={300} />
       <h3>{title}</h3>
       <p>{authors.join(', ')}</p>
     </div>
