@@ -13,8 +13,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        primary: 'rgb(19, 17, 54)',
+        yellow: 'rgb(242, 191, 67)',
+        yellowOpacity: 'rgb(242 191 67 / 85%)'
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 };
 export default config;
