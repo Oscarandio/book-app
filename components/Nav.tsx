@@ -5,7 +5,7 @@ interface NavProps {}
 const Nav: React.FC<NavProps> = () => {
   return (
     <div className='bg-jacaranda'>
-      <nav className='container mx-auto h-16 flex justify-between items-center'>
+      <nav className='container mx-auto h-16 flex justify-between items-center px-3'>
         <div>
           <a href='/' aria-label='Home'>
             LOGO

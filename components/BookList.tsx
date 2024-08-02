@@ -9,7 +9,7 @@ const BookList: React.FC = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const query = 'jaun ramon rallo'; // Consulta estática para prueba
+      const query = 'harry potter'; // Consulta estática para prueba
       const maxResults = 9; // Número máximo de resultados por consulta
       try {
         const response = await fetch(
