@@ -4,7 +4,7 @@
 
 :root {
   --text-color-rgb: 255, 255, 255;
-  --background-rgb: 19, 17, 54;
+  --background-rgb: 255, 255, 255;
 }
 
 /* @media (prefers-color-scheme: dark) {

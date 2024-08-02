@@ -8,11 +8,17 @@ interface BookCardProps {
   description: string;
 }
 
-const truncateText = (text: string, maxLength: number) => {
+const truncateText = (text: string | undefined, maxLength: number) => {
+  if (!text) {
+    // Si no hay descripción, devolver una cadena vacía o un mensaje por defecto
+    return 'Descripción no disponible';
+  }
+
   if (text.length > maxLength) {
     // Truncar el texto y agregar '...'
     return text.slice(0, maxLength) + ' ...';
   }
+
   // Agregar un punto final si el texto no se trunca
   return text.trim() + '.';
 };
@@ -28,7 +34,7 @@ const BookCard: React.FC<BookCardProps> = ({
   const defaultThumbnail = '/default-thumbnail.jpg';
 
   return (
-    <article className='flex my-5 lg:my-8 border-2 border-transparent rounded-xl hover:border-2 hover:border-yellow p-1 cursor-pointer'>
+    <article className='flex my-5 lg:my-8 border-2 border-transparent rounded-xl hover:border-2 hover:border-primary p-1 cursor-pointer'>
       <figure className='relative w-28 h-40 flex-shrink-0'>
         <Image
           className='rounded-lg'
@@ -39,16 +45,12 @@ const BookCard: React.FC<BookCardProps> = ({
           style={{ objectFit: 'cover' }}
         />
       </figure>
-      <section className='ml-4'>
-        <h3 className='text-yellow text-xl font-semibold'>
-          {title || 'Sin título'}
-        </h3>
-        <p className='text-yellowOpacity text-sm mt-1 mb-4'>
+      <section className='ml-4 text-primary'>
+        <h3 className=' text-xl font-bold'>{title || 'Sin título'}</h3>
+        <p className='text-sm font-light mt-1 mb-4'>
           {authors.join(', ') || 'Autor desconocido'}
         </p>
-        <p className='text-sm line-clamp-5 mt-1'>
-          {displayDescription || 'Descripción no disponible'}
-        </p>
+        <p className='line-clamp-3 mt-1'>{displayDescription}</p>
       </section>
     </article>
   );
