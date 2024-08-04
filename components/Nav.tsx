@@ -13,10 +13,10 @@ const Nav: React.FC<NavProps> = () => {
         </div>
         <ul className='flex space-x-16'>
           <li>
-            <a href='/about'>Home</a>
+            <a href='/'>Home</a>
           </li>
           <li>
-            <a href='/services'>About</a>
+            <a href='/categories'>Categorias</a>
           </li>
           <li>
             <a href='/contact'>Contact</a>
