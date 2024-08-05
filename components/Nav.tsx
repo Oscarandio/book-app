@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Link from "next/link";
 
 interface NavProps {}
 
@@ -7,19 +8,25 @@ const Nav: React.FC<NavProps> = () => {
     <div className='bg-jacaranda'>
       <nav className='container mx-auto h-16 flex justify-between items-center px-3'>
         <div>
-          <a href='/' aria-label='Home'>
+          <Link href='/' aria-label='Home'>
             LOGO
-          </a>
+          </Link>
         </div>
         <ul className='flex space-x-16'>
           <li>
-            <a href='/'>Home</a>
+            <Link href='/'>
+              Home
+            </Link>
           </li>
           <li>
-            <a href='/categories'>Categorias</a>
+            <Link href='/categories'>
+              Categorias
+            </Link>
           </li>
           <li>
-            <a href='/contact'>Contact</a>
+            <Link href='/contact'>
+              Contact
+            </Link>
           </li>
         </ul>
       </nav>

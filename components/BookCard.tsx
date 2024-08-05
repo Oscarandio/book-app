@@ -29,26 +29,26 @@ const BookCard: React.FC<BookCardProps> = ({
           alt={title}
           fill
           sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw'
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: "cover" }}
         />
       </figure>
       <section className='ml-4 text-primary'>
         <h3 className='line-clamp-2 text-xl font-bold'>
-          {title || 'Sin título'}
+          {title || "Sin título"}
         </h3>
         <p className='text-sm font-light mt-1 mb-4'>
-          {`${
+          {`${authors.join(", ") || "Autor desconocido"} · ${
             publishedDate
               ? publishedDate.slice(0, 4)
-              : 'Año de publicación desconocido'
+              : "Año de publicación desconocido"
           }`}
         </p>
 
         <p className='line-clamp-3 mt-1'>
-          {description || 'Descripción no disponibe'}
+          {description || "Descripción no disponibe"}
         </p>
         <p className='text-sm font-light mt-3'>
-          {`Número de páginas:  ${pageCount || 'no disponibe'}`}
+          {`Número de páginas:  ${pageCount || "no disponibe"}`}
         </p>
       </section>
     </article>
