@@ -1,7 +1,8 @@
 // lib/CategoryButtons.tsx
-"use client";
+'use client';
 
-import categoriesData from "@/lib/BookCategories.json"; // Importar el archivo JSON
+import BookList from '@/components/BookList';
+import categoriesData from '@/lib/BookCategories.json'; // Importar el archivo JSON
 
 // Definir la interfaz para el tipo de datos del JSON
 interface CategoriesData {
@@ -21,8 +22,7 @@ const CategoryButtons: React.FC = () => {
             <button
               type='button'
               className='px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors'
-              onClick={() => alert(`Category: ${category}`)}
-            >
+              onClick={() => alert(`Category: ${category}`)}>
               {category}
             </button>
           </li>

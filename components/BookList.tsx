@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import BookCard from "../components/BookCard";
+import { useState, useEffect } from 'react';
+import BookCard from '../components/BookCard';
 
 const BookList: React.FC = () => {
   const [books, setBooks] = useState<any[]>([]);
@@ -9,26 +9,26 @@ const BookList: React.FC = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const category = "Fantasy"; // Consulta estática para prueba
+      const query = 'juan ramon rallo'; // Consulta estática para prueba
       const maxResults = 9; // Número máximo de resultados por consulta
       try {
         const response = await fetch(
-          `https://www.googleapis.com/books/v1/volumes?q=subject:${encodeURIComponent(
-            category
-          )}&key=AIzaSyCfheD5T1EkGQspFI9S9QAGXKkK7_YMYSw&maxResults=${maxResults}&langRestrict=es`
+          `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
+            query
+          )}&key=AIzaSyCfheD5T1EkGQspFI9S9QAGXKkK7_YMYSw&maxResults=${maxResults}`
         );
         const data = await response.json();
-        console.log("Response data:", data); // Añadir esto para ver la respuesta
+        console.log('Response data:', data); // Añadir esto para ver la respuesta
         // Asegúrate de que data.items sea un array
         if (Array.isArray(data.items)) {
           setBooks(data.items); // Reemplaza la lista existente de libros
         } else {
-          console.log("No items found in data");
+          console.log('No items found in data');
           setBooks([]); // Asegura que `books` sea un array vacío si no hay resultados
         }
       } catch (error) {
-        console.error("Error fetching books:", error);
-        setError("Error fetching books");
+        console.error('Error fetching books:', error);
+        setError('Error fetching books');
         setBooks([]); // Asegura que `books` sea un array vacío en caso de error
       }
     };
@@ -47,7 +47,7 @@ const BookList: React.FC = () => {
                 title={book.volumeInfo.title}
                 authors={book.volumeInfo.authors || []}
                 publishedDate={book.volumeInfo.publishedDate}
-                thumbnail={book.volumeInfo.imageLinks?.thumbnail || ""}
+                thumbnail={book.volumeInfo.imageLinks?.thumbnail || ''}
                 description={book.volumeInfo.description}
                 pageCount={book.volumeInfo.pageCount}
               />
