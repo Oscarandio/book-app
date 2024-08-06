@@ -30,7 +30,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
       value={query}
       onChange={handleInputChange}
       placeholder='Buscar libros...'
-      className='border border-primary border-2 p-2 rounded w-full mb-2 text-primary font-bold mt-12'
+      className='border-2 border-primary p-2 rounded w-full mb-2 text-primary font-bold mt-12'
     />
   );
 };

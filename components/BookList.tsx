@@ -9,6 +9,9 @@ const BookList: React.FC = () => {
   const [query, setQuery] = useState<string>('joel dicker'); // Estado con consulta por defecto
   const [error, setError] = useState<string | null>(null);
 
+  // Obtén la clave API desde las variables de entorno
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY;
+
   // Función para obtener libros basada en la consulta actual
   const fetchBooks = async (searchQuery: string) => {
     if (!searchQuery.trim()) {
@@ -22,7 +25,7 @@ const BookList: React.FC = () => {
       const response = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
           searchQuery
-        )}&key=AIzaSyCfheD5T1EkGQspFI9S9QAGXKkK7_YMYSw
+        )}&key=${apiKey}
 &maxResults=${maxResults}`
       );
       if (!response.ok) throw new Error('Network response was not ok');

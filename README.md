@@ -4,6 +4,8 @@ Loader al cargar los libros/optimizar carga
 
 Página de resultados por categoría
 
+Arreglar error número de peticiones/useCallBack/useEffect
+
 # Visión General del Proyecto
 
 ## Descripción de la Aplicación

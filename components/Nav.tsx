@@ -1,5 +1,5 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
 interface NavProps {}
 
@@ -14,19 +14,10 @@ const Nav: React.FC<NavProps> = () => {
         </div>
         <ul className='flex space-x-16'>
           <li>
-            <Link href='/'>
-              Home
-            </Link>
+            <Link href='/'>Home</Link>
           </li>
           <li>
-            <Link href='/categories'>
-              Categorias
-            </Link>
-          </li>
-          <li>
-            <Link href='/contact'>
-              Contact
-            </Link>
+            <Link href='/categories'>Categorias</Link>
           </li>
         </ul>
       </nav>
