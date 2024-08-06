@@ -1,85 +1,68 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useCallback } from "react";
-import BookCard from "../components/BookCard";
+import { useState, useEffect } from 'react';
+import BookCard from '../components/BookCard';
+import SearchInput from '../components/SearchInput';
 
 const BookList: React.FC = () => {
   const [books, setBooks] = useState<any[]>([]);
-  const [query, setQuery] = useState<string>("joel dicker"); // Estado con consulta por defecto
+  const [query, setQuery] = useState<string>('joel dicker'); // Estado con consulta por defecto
   const [error, setError] = useState<string | null>(null);
 
   // Función para obtener libros basada en la consulta actual
   const fetchBooks = async (searchQuery: string) => {
-    const maxResults = 9; // Número máximo de resultados por consulta
+    if (!searchQuery.trim()) {
+      console.warn('Empty query string, skipping fetch');
+      setBooks([]); // Limpia los resultados si la consulta está vacía
+      return;
+    }
+
+    const maxResults = 6; // Número máximo de resultados por consulta
     try {
       const response = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
           searchQuery
-        )}&key=AIzaSyCfheD5T1EkGQspFI9S9QAGXKkK7_YMYSw&maxResults=${maxResults}`
+        )}&key=AIzaSyCfheD5T1EkGQspFI9S9QAGXKkK7_YMYSw
+&maxResults=${maxResults}`
       );
+      if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
-      console.log("Response data:", data); // Añadir esto para ver la respuesta
+      console.log('Response data:', data);
 
-      // Asegúrate de que data.items sea un array
       if (Array.isArray(data.items)) {
-        setBooks(data.items); // Reemplaza la lista existente de libros
+        setBooks(data.items);
       } else {
-        console.log("No items found in data");
-        setBooks([]); // Asegura que `books` sea un array vacío si no hay resultados
+        setBooks([]);
       }
     } catch (error) {
-      console.error("Error fetching books:", error);
-      setError("Error fetching books");
-      setBooks([]); // Asegura que `books` sea un array vacío en caso de error
+      console.error('Error fetching books:', error);
+      setError('Error mostrando los resultados');
+      setBooks([]);
     }
   };
 
-  // Debounce: para limitar la frecuencia de las llamadas a fetchBooks
-  const debounce = (func: (...args: any[]) => void, delay: number) => {
-    let timeoutId: NodeJS.Timeout;
-    return (...args: any[]) => {
-      if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        func(...args);
-      }, delay);
-    };
-  };
-
-  // Debounce aplicado a fetchBooks
-  const debouncedFetchBooks = useCallback(debounce(fetchBooks, 500), []);
-
-  // Maneja el cambio en el campo de búsqueda y realiza la búsqueda
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuery = e.target.value;
-    setQuery(newQuery);
-    debouncedFetchBooks(newQuery); // Llama a la función debounced con la nueva consulta
-  };
-
-  // Efecto para realizar la búsqueda cuando cambia la consulta
   useEffect(() => {
     fetchBooks(query); // Realiza la búsqueda cada vez que cambia la consulta
-  }, [query]); // Dependencia en `query`
+  }, [query]);
 
   return (
     <div className='flex flex-col items-center mx-3 my-6'>
       {error && <p className='text-red-500'>{error}</p>}
       <div className='container mx-auto'>
-        <input
-          type='text'
-          value={query}
-          onChange={handleInputChange}
-          placeholder='Search for books'
-          className='border p-2 rounded w-full mb-2 text-primary font-bold'
+        <SearchInput
+          query={query}
+          setQuery={setQuery}
+          fetchBooks={fetchBooks}
         />
         {Array.isArray(books) && books.length > 0 ? (
-          <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-12'>
+          <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-12 my-8'>
             {books.map((book: any) => (
               <BookCard
                 key={book.id}
                 title={book.volumeInfo.title}
                 authors={book.volumeInfo.authors || []}
                 publishedDate={book.volumeInfo.publishedDate}
-                thumbnail={book.volumeInfo.imageLinks?.thumbnail || ""}
+                thumbnail={book.volumeInfo.imageLinks?.thumbnail || ''}
                 description={book.volumeInfo.description}
                 pageCount={book.volumeInfo.pageCount}
               />

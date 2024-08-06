@@ -1,14 +1,8 @@
 ## Pendiente
 
-Mostrar número de resultados en función de las columnas/width
-
-Advertencia useCallback
-
 Loader al cargar los libros/optimizar carga
 
 Página de resultados por categoría
-
-Buscador
 
 # Visión General del Proyecto
 

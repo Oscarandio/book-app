@@ -1,11 +1,9 @@
-import BookList from "@/components/BookList";
-
+import BookList from '@/components/BookList';
 
 const Home: React.FC = () => {
   return (
     <>
-    
-        <BookList />
+      <BookList />
     </>
   );
 };

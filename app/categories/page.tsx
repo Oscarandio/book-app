@@ -16,12 +16,12 @@ const CategoryButtons: React.FC = () => {
       <header>
         <h1 className='text-2xl text-primary font-bold mb-4'>Categorías</h1>
       </header>
-      <ul className='flex flex-wrap gap-2 justify-center'>
+      <ul className='flex flex-wrap gap-4 justify-center my-12'>
         {categories.map((category, index) => (
           <li key={index}>
             <button
               type='button'
-              className='px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors'
+              className='px-4 py-2 bg-jacaranda text-white rounded-2xl hover:bg-gray-300 transition-colors'
               onClick={() => alert(`Category: ${category}`)}>
               {category}
             </button>
