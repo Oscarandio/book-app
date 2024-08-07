@@ -1,37 +1,38 @@
-import { ChangeEvent } from 'react';
-import debounce from 'lodash.debounce';
+import { useState, ChangeEvent, FormEvent } from 'react';
 
 interface SearchInputProps {
-  query: string;
   setQuery: (query: string) => void;
   fetchBooks: (searchQuery: string) => void;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({
-  query,
-  setQuery,
-  fetchBooks,
-}) => {
-  // Debounce aplicado a fetchBooks
-  const debouncedFetchBooks = debounce((newQuery: string) => {
-    fetchBooks(newQuery);
-  }, 1000); // Ajusta el tiempo de espera según sea necesario
+const SearchInput: React.FC<SearchInputProps> = ({ setQuery, fetchBooks }) => {
+  const [inputValue, setInputValue] = useState<string>('');
 
-  // Maneja el cambio en el campo de búsqueda y realiza la búsqueda
+  // Maneja el cambio en el campo de búsqueda
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newQuery = e.target.value;
-    setQuery(newQuery);
-    debouncedFetchBooks(newQuery); // Llama a la función debounced con la nueva consulta
+    setInputValue(e.target.value);
+  };
+
+  // Maneja el envío del formulario
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setQuery(inputValue);
+    fetchBooks(inputValue);
   };
 
   return (
-    <input
-      type='text'
-      value={query}
-      onChange={handleInputChange}
-      placeholder='Buscar libros...'
-      className='border-2 border-primary p-2 rounded w-full mb-2 text-primary font-bold mt-12'
-    />
+    <form onSubmit={handleSubmit} className='flex gap-5'>
+      <input
+        type='text'
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder='Buscar libros...'
+        className='border-2 border-primary p-2 rounded w-full text-primary font-bold'
+      />
+      <button type='submit' className='bg-primary text-white p-2 rounded w-60'>
+        Buscar
+      </button>
+    </form>
   );
 };
 
