@@ -60,6 +60,7 @@ const BookList: React.FC = () => {
             {books.map((book: any) => (
               <BookCard
                 key={book.id}
+                id={book.id} // Pasa el id a BookCard
                 title={book.volumeInfo.title}
                 authors={book.volumeInfo.authors || []}
                 publishedDate={book.volumeInfo.publishedDate}
