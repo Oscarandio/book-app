@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from "react";
 
 interface SearchInputProps {
   setQuery: (query: string) => void;
@@ -6,7 +6,7 @@ interface SearchInputProps {
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({ setQuery, fetchBooks }) => {
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>("");
 
   // Maneja el cambio en el campo de búsqueda
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ setQuery, fetchBooks }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='flex gap-5'>
+    <form onSubmit={handleSubmit} className='flex flex-wrap sm:flex-nowrap gap-2 sm:gap-5'>
       <input
         type='text'
         value={inputValue}
@@ -29,7 +29,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ setQuery, fetchBooks }) => {
         placeholder='Buscar libros...'
         className='border-2 border-primary p-2 rounded w-full text-primary font-bold'
       />
-      <button type='submit' className='bg-primary text-white p-2 rounded w-60'>
+      <button type='submit' className='bg-primary text-white p-2 rounded w-full sm:w-60'>
         Buscar
       </button>
     </form>

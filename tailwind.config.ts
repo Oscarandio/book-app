@@ -14,15 +14,13 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        jacaranda: 'rgb(136, 143, 199)',
-        primary: 'rgb(19, 17, 54)',
-        yellow: 'rgb(242, 191, 67)',
-        yellowOpacity: 'rgb(242 191 67 / 85%)'
-      }
+        jacaranda: "rgb(136, 143, 199)",
+        primary: "rgb(19, 17, 54)",
+        yellow: "rgb(242, 191, 67)",
+        yellowOpacity: "rgb(242 191 67 / 85%)",
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-  ],
+  plugins: [],
 };
 export default config;

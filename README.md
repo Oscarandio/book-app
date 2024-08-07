@@ -1,10 +1,6 @@
 ## Pendiente
 
-Loader al cargar los libros/optimizar carga
-
 Página de resultados por categoría
-
-Arreglar error número de peticiones/useCallBack/useEffect
 
 # Visión General del Proyecto
 
@@ -24,7 +20,7 @@ Aplicación para visualizar un catálogo de libros a través de la API de Google
 
 Página de Inicio: Pantalla principal donde los usuarios pueden buscar libros.
 
-Página de Resultados de Búsqueda: Mostrar los resultados obtenidos de la API de Google Books. (Esta puede ser la misma que la de inicio, tan solo filtrando el contenido según la búsqueda).
+Resultados de Búsqueda: Mostrar los resultados obtenidos de la API de Google Books.
 
 Página de Detalles del Libro (Ficha del libro): Mostrar detalles más completos de un libro seleccionado.
 
