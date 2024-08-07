@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback } from 'react';
-import BookCard from '../components/BookCard';
-import SearchInput from '../components/SearchInput';
+import { useState, useEffect, useCallback } from "react";
+import BookCard from "../components/BookCard";
+import SearchInput from "../components/SearchInput";
 
 const BookList: React.FC = () => {
   const [books, setBooks] = useState<any[]>([]);
-  const [query, setQuery] = useState<string>('joel dicker'); // Estado con consulta por defecto
+  const [query, setQuery] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
   // Obtén la clave API desde las variables de entorno
@@ -16,7 +16,7 @@ const BookList: React.FC = () => {
   const fetchBooks = useCallback(
     async (searchQuery: string) => {
       if (!searchQuery.trim()) {
-        console.warn('Empty query string, skipping fetch');
+        console.warn("Empty query string, skipping fetch");
         setBooks([]); // Limpia los resultados si la consulta está vacía
         return;
       }
@@ -28,9 +28,9 @@ const BookList: React.FC = () => {
             searchQuery
           )}&key=${apiKey}&maxResults=${maxResults}`
         );
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
-        console.log('Response data:', data);
+        console.log("Response data:", data);
 
         if (Array.isArray(data.items)) {
           setBooks(data.items);
@@ -38,16 +38,30 @@ const BookList: React.FC = () => {
           setBooks([]);
         }
       } catch (error) {
-        console.error('Error fetching books:', error);
-        setError('Error mostrando los resultados');
+        console.error("Error fetching books:", error);
+        setError("Error mostrando los resultados");
         setBooks([]);
       }
     },
     [apiKey]
   );
 
+  // Al cargar el componente, recupera la consulta guardada en localStorage si existe
   useEffect(() => {
-    fetchBooks(query); // Realiza la búsqueda cada vez que cambia la consulta
+    const savedQuery = localStorage.getItem("lastSearchQuery");
+    if (savedQuery) {
+      setQuery(savedQuery);
+    } else {
+      setQuery("joel dicker"); // Consulta por defecto
+    }
+  }, []);
+
+  // Guarda la consulta en localStorage cada vez que cambie
+  useEffect(() => {
+    if (query) {
+      localStorage.setItem("lastSearchQuery", query);
+      fetchBooks(query);
+    }
   }, [query, fetchBooks]);
 
   return (
@@ -64,7 +78,7 @@ const BookList: React.FC = () => {
                 title={book.volumeInfo.title}
                 authors={book.volumeInfo.authors || []}
                 publishedDate={book.volumeInfo.publishedDate}
-                thumbnail={book.volumeInfo.imageLinks?.thumbnail || ''}
+                thumbnail={book.volumeInfo.imageLinks?.thumbnail || ""}
                 description={book.volumeInfo.description}
                 pageCount={book.volumeInfo.pageCount}
               />
