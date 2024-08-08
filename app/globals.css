@@ -5,6 +5,7 @@
 :root {
   --text-color-rgb: 255, 255, 255;
   --background-rgb: 255, 255, 255;
+  --jacaranda: 136, 143, 199;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -18,6 +19,11 @@
 body {
   color: rgb(var(--text-color-rgb));
   background: rgb(var(--background-rgb));
+}
+
+::selection {
+  background-color: rgb(var(--jacaranda));
+  color: rgb(var(--text-color-rgb));
 }
 
 @layer utilities {

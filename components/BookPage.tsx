@@ -1,5 +1,5 @@
 import Image from 'next/image';
-
+import Button from './layout/Button';
 interface BookPageProps {
   title: string;
   authors: string[];
@@ -8,7 +8,6 @@ interface BookPageProps {
   description: string;
   pageCount: number;
   publisher: string;
-  language: string;
 }
 
 const BookPage: React.FC<BookPageProps> = ({
@@ -19,13 +18,12 @@ const BookPage: React.FC<BookPageProps> = ({
   publishedDate,
   pageCount,
   publisher,
-  language,
 }) => {
   const defaultThumbnail = '/default-thumbnail.jpg';
 
   return (
     <section className='container mx-auto my-12 px-3 text-primary'>
-      <article className='flex my-4'>
+      <article className='flex'>
         <figure className='relative w-28 h-44 flex-shrink-0'>
           <Image
             className='rounded-lg'
@@ -37,9 +35,7 @@ const BookPage: React.FC<BookPageProps> = ({
           />
         </figure>
         <section className='ml-4'>
-          <h3 className='line-clamp-2 text-xl font-bold'>
-            {title || 'Sin título'}
-          </h3>
+          <h3 className='text-2xl font-semibold'>{title || 'Sin título'}</h3>
           <div className='text-sm font-light mt-3 mb-4 flex flex-col gap-1'>
             <span className=''>
               {`Autor: ${
@@ -52,12 +48,11 @@ const BookPage: React.FC<BookPageProps> = ({
               publishedDate || 'Año de publicación desconocido'
             }`}</span>
             <span>{`Número de páginas:  ${pageCount || 'no disponibe'}`}</span>
-            <span>{`Idioma: ${language || 'no disponible'}`}</span>
             <span>{`Editor: ${publisher || 'no disponible'}`}</span>
           </div>
         </section>
       </article>
-      <section className='flex flex-wrap-reverse lg:flex-nowrap gap-4 lg:gap-20'>
+      <section className='flex flex-wrap-reverse lg:flex-nowrap gap-0 lg:gap-20'>
         <article className='w-full lg:w-3/4'>
           <p
             className='mt-1'
@@ -66,8 +61,9 @@ const BookPage: React.FC<BookPageProps> = ({
             }}
           />
         </article>
-        <aside className='w-full lg:w-1/4 text-sm font-light flex flex-col gap-2'>
-          {' '}
+        <aside className='w-full lg:w-1/4 text-sm font-light my-6 flex flex-wrap flex-row lg:flex-col gap-4'>
+          <Button text='Guardar como Leído' />
+          <Button text='Guardar como Pendiente' />
         </aside>
       </section>
     </section>

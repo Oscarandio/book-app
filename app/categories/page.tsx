@@ -1,6 +1,7 @@
 // lib/CategoryButtons.tsx
 'use client';
 
+import Button from '@/components/layout/Button';
 import categoriesData from '@/lib/BookCategories.json'; // Importar el archivo JSON
 
 const categoryTranslations: Record<string, string> = {
@@ -63,12 +64,7 @@ const CategoryButtons: React.FC = () => {
       <ul className='flex flex-wrap gap-4 justify-center my-12'>
         {translatedCategories.map((category, index) => (
           <li key={index}>
-            <button
-              type='button'
-              className='px-4 py-2 bg-jacaranda text-white rounded-2xl hover:bg-primary transition-colors ease-linear'
-              onClick={() => alert(`Category: ${category}`)}>
-              {category}
-            </button>
+            <Button text={category} />
           </li>
         ))}
       </ul>

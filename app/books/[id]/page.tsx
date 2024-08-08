@@ -58,7 +58,6 @@ const BookDetails: React.FC = () => {
       description={book.volumeInfo.description}
       pageCount={book.volumeInfo.pageCount}
       publisher={book.volumeInfo.publisher}
-      language={book.volumeInfo.language}
     />
   );
 };
