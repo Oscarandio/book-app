@@ -25,3 +25,11 @@ body {
     text-wrap: balance;
   }
 }
+
+p {
+  margin-block: 24px;
+}
+
+i {
+  font-weight: 500;
+}
