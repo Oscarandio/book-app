@@ -19,6 +19,9 @@ const Nav: React.FC<NavProps> = () => {
           <li>
             <Link href='/categories'>Categorias</Link>
           </li>
+          <li>
+            <Link href='/lists'>Listas</Link>
+          </li>
         </ul>
       </nav>
     </div>

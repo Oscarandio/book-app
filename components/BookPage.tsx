@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Button from './layout/Button';
+import { useBookContext } from '../context/BookContext';
+
 interface BookPageProps {
+  id: string;
   title: string;
   authors: string[];
   publishedDate: string;
@@ -11,6 +14,7 @@ interface BookPageProps {
 }
 
 const BookPage: React.FC<BookPageProps> = ({
+  id,
   title,
   authors,
   thumbnail,
@@ -20,6 +24,17 @@ const BookPage: React.FC<BookPageProps> = ({
   publisher,
 }) => {
   const defaultThumbnail = '/default-thumbnail.jpg';
+  const { addToReadBooks, addToPendingBooks } = useBookContext();
+
+  const handleSaveAsRead = () => {
+    addToReadBooks({ id, title });
+    alert('Libro guardado como leído');
+  };
+
+  const handleSaveAsPending = () => {
+    addToPendingBooks({ id, title });
+    alert('Libro guardado como pendiente');
+  };
 
   return (
     <section className='container mx-auto my-12 px-3 text-primary'>
@@ -62,8 +77,8 @@ const BookPage: React.FC<BookPageProps> = ({
           />
         </article>
         <aside className='w-full lg:w-1/4 text-sm font-light my-6 flex flex-wrap flex-row lg:flex-col gap-4'>
-          <Button text='Guardar como Leído' />
-          <Button text='Guardar como Pendiente' />
+          <Button onClick={handleSaveAsRead} text='Guardar como Leído' />
+          <Button onClick={handleSaveAsPending} text='Guardar como Pendiente' />
         </aside>
       </section>
     </section>
