@@ -1,3 +1,4 @@
+// context/BookContext.tsx
 'use client';
 
 import {
@@ -7,8 +8,9 @@ import {
   ReactNode,
   useEffect,
 } from 'react';
-import { db } from '@/lib/firebase';
+import { db, auth } from '@/lib/firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 
 interface Book {
   id: string;
@@ -35,17 +37,34 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [readBooks, setReadBooks] = useState<Book[]>([]);
   const [pendingBooks, setPendingBooks] = useState<Book[]>([]);
+  const [user, setUser] = useState<any>(null);
 
-  const loadBooks = async () => {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      if (user) {
+        loadBooks(user.uid);
+      } else {
+        setReadBooks([]);
+        setPendingBooks([]);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const loadBooks = async (userId: string) => {
     try {
-      const readBooksSnapshot = await getDocs(collection(db, 'readBooks'));
+      const readBooksSnapshot = await getDocs(
+        collection(db, 'users', userId, 'readBooks')
+      );
       const loadedReadBooks = readBooksSnapshot.docs.map(
         (doc) => doc.data() as Book
       );
       setReadBooks(loadedReadBooks);
 
       const pendingBooksSnapshot = await getDocs(
-        collection(db, 'pendingBooks')
+        collection(db, 'users', userId, 'pendingBooks')
       );
       const loadedPendingBooks = pendingBooksSnapshot.docs.map(
         (doc) => doc.data() as Book
@@ -56,25 +75,25 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
-  useEffect(() => {
-    loadBooks();
-  }, []);
-
   const addToReadBooks = async (book: Book) => {
-    setReadBooks((prevBooks) => [...prevBooks, book]);
-    try {
-      await addDoc(collection(db, 'readBooks'), book);
-    } catch (error) {
-      console.error('Error adding book to Firestore: ', error);
+    if (user) {
+      setReadBooks((prevBooks) => [...prevBooks, book]);
+      try {
+        await addDoc(collection(db, 'users', user.uid, 'readBooks'), book);
+      } catch (error) {
+        console.error('Error adding book to Firestore: ', error);
+      }
     }
   };
 
   const addToPendingBooks = async (book: Book) => {
-    setPendingBooks((prevBooks) => [...prevBooks, book]);
-    try {
-      await addDoc(collection(db, 'pendingBooks'), book);
-    } catch (error) {
-      console.error('Error adding book to Firestore: ', error);
+    if (user) {
+      setPendingBooks((prevBooks) => [...prevBooks, book]);
+      try {
+        await addDoc(collection(db, 'users', user.uid, 'pendingBooks'), book);
+      } catch (error) {
+        console.error('Error adding book to Firestore: ', error);
+      }
     }
   };
 

@@ -15,9 +15,12 @@ const Nav: React.FC<NavProps> = () => {
 
   return (
     <div className='bg-jacaranda text-2xl md:text-base font-medium md:font-light px-3'>
-      <ul className='d-block md:hidden text-end text-sm'>
+      <ul className='flex  justify-end gap-4 md:hidden text-end text-sm'>
         <li className='py-2'>
-          <Link href='/'>Iniciar sesión</Link>
+          <Link href='/login'>Iniciar sesión</Link>
+        </li>
+        <li className='py-2'>
+          <Link href='/register'>Registrarse</Link>
         </li>
       </ul>
       <nav className='container mx-auto h-16 flex justify-between items-center px-3 md:px-0'>
@@ -48,9 +51,12 @@ const Nav: React.FC<NavProps> = () => {
             <Link href='/lists'>Listas</Link>
           </li>
         </ul>
-        <ul className='hidden md:block'>
+        <ul className='hidden md:flex gap-4'>
           <li className='py-2'>
-            <Link href='/'>Iniciar sesión</Link>
+            <Link href='/login'>Iniciar sesión</Link>
+          </li>
+          <li className='py-2'>
+            <Link href='/register'>Registrarse</Link>
           </li>
         </ul>
       </nav>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { openSans } from './fonts';
 import './globals.css';
+// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { BookProvider } from '@/context/BookContext';
 import Nav from '@/components/layout/Nav';
 
