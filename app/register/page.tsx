@@ -28,7 +28,7 @@ const Register = () => {
   };
 
   return (
-    <section className='h-custom-height-mobile md:h-custom-height-desktop grid place-content-center'>
+    <section className='h-custom-height-mobile md:h-custom-height-desktop grid place-content-center text-primary'>
       <h1>Register</h1>
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <div>

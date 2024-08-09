@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   return (
-    <section className='h-custom-height-mobile md:h-custom-height-desktop grid place-content-center'>
+    <section className='h-custom-height-mobile md:h-custom-height-desktop grid place-content-center text-primary'>
       <form className='flex flex-col gap-4' onSubmit={handleLogin}>
         <input
           className='border-jacaranda border-2 rounded p-2 font-medium text-sm'
@@ -37,7 +37,9 @@ const Login = () => {
           placeholder='Contraseña'
         />
         {error && <p>{error}</p>}
-        <button className="bg-jacaranda rounded p-2 font-light" type='submit'>Iniciar Sesión</button>
+        <button className='bg-jacaranda rounded p-2 font-light' type='submit'>
+          Iniciar Sesión
+        </button>
       </form>
     </section>
   );
