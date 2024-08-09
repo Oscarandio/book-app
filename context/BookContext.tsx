@@ -1,16 +1,14 @@
-// src/context/BookContext.tsx
-
 'use client';
 
 import {
   createContext,
   useContext,
   useState,
-  useEffect,
   ReactNode,
+  useEffect,
 } from 'react';
 import { db } from '@/lib/firebase';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 
 interface Book {
   id: string;
@@ -40,14 +38,12 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({
 
   const loadBooks = async () => {
     try {
-      // Cargar libros leídos
       const readBooksSnapshot = await getDocs(collection(db, 'readBooks'));
       const loadedReadBooks = readBooksSnapshot.docs.map(
         (doc) => doc.data() as Book
       );
       setReadBooks(loadedReadBooks);
 
-      // Cargar libros pendientes
       const pendingBooksSnapshot = await getDocs(
         collection(db, 'pendingBooks')
       );
@@ -61,13 +57,13 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   useEffect(() => {
-    loadBooks(); // Cargar los libros desde Firestore cuando se inicia la app
+    loadBooks();
   }, []);
 
   const addToReadBooks = async (book: Book) => {
     setReadBooks((prevBooks) => [...prevBooks, book]);
     try {
-      await addDoc(collection(db, 'readBooks'), book); // Guarda en Firestore
+      await addDoc(collection(db, 'readBooks'), book);
     } catch (error) {
       console.error('Error adding book to Firestore: ', error);
     }
@@ -76,7 +72,7 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({
   const addToPendingBooks = async (book: Book) => {
     setPendingBooks((prevBooks) => [...prevBooks, book]);
     try {
-      await addDoc(collection(db, 'pendingBooks'), book); // Guarda en Firestore
+      await addDoc(collection(db, 'pendingBooks'), book);
     } catch (error) {
       console.error('Error adding book to Firestore: ', error);
     }

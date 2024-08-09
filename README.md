@@ -2,8 +2,6 @@
 
 Página de resultados por categoría
 
-Menú hamburguesa mobile
-
 Firebase (Usuarios y Base de datos)
 
 Paginación en resultados

@@ -12,8 +12,8 @@ const ReadBooksList: React.FC = () => {
   }
 
   return (
-    <section>
-      <h2 className='text-xl font-bold text-jacaranda'>Leídos</h2>
+    <section className='my-8'>
+      <h2 className='text-xl font-bold text-jacaranda mb-3'>Leídos</h2>
       <section className='flex flex-wrap gap-6'>
         {readBooks.map((book) => (
           <>

@@ -14,7 +14,12 @@ const Nav: React.FC<NavProps> = () => {
   };
 
   return (
-    <div className='bg-jacaranda text-2xl md:text-base font-medium md:font-light'>
+    <div className='bg-jacaranda text-2xl md:text-base font-medium md:font-light px-3'>
+      <ul className='d-block md:hidden text-end text-sm'>
+        <li className='py-2'>
+          <Link href='/'>Iniciar sesión</Link>
+        </li>
+      </ul>
       <nav className='container mx-auto h-16 flex justify-between items-center px-3 md:px-0'>
         <div>
           <Link href='/' aria-label='Home'>
@@ -31,7 +36,7 @@ const Nav: React.FC<NavProps> = () => {
         <ul
           className={`${
             isOpen ? 'block' : 'hidden'
-          } md:flex md:space-y-0 md:space-x-12 absolute md:relative top-16 md:top-0 left-0 space-y-4 w-full md:w-auto
+          } md:flex md:space-y-0 md:space-x-12 absolute md:relative top-24 md:top-0 left-0 space-y-4 w-full md:w-auto
            bg-jacaranda md:bg-transparent z-10 md:z-auto flex flex-col md:flex-row p-3 md:p-0`}>
           <li className='py-2'>
             <Link href='/'>Home</Link>

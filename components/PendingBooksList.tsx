@@ -11,10 +11,9 @@ const PendingBooksList: React.FC = () => {
     return <p>No hay libros pendientes.</p>;
   }
 
-
   return (
-    <section>
-      <h2 className='text-xl font-bold text-jacaranda'>Pendientes</h2>
+    <section className='my-8'>
+      <h2 className='text-xl font-bold text-jacaranda mb-3'>Pendientes</h2>
       <section className='flex flex-wrap gap-6'>
         {pendingBooks.map((book) => (
           <>
