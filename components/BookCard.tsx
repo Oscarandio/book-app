@@ -8,7 +8,7 @@ interface BookCardProps {
   authors: string[];
   publishedDate: string;
   thumbnail: string;
-  description: string;
+  description?: string;
   pageCount: number;
 }
 

@@ -27,12 +27,30 @@ const BookPage: React.FC<BookPageProps> = ({
   const { addToReadBooks, addToPendingBooks } = useBookContext();
 
   const handleSaveAsRead = () => {
-    addToReadBooks({ id, title });
+    addToReadBooks({
+      id,
+      title,
+      authors,
+      publishedDate,
+      thumbnail,
+      description,
+      pageCount,
+      publisher,
+    });
     alert('Libro guardado como leído');
   };
 
   const handleSaveAsPending = () => {
-    addToPendingBooks({ id, title });
+    addToPendingBooks({
+      id,
+      title,
+      authors,
+      publishedDate,
+      thumbnail,
+      description,
+      pageCount,
+      publisher,
+    });
     alert('Libro guardado como pendiente');
   };
 

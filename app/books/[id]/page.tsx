@@ -1,4 +1,3 @@
-// app/books/[id]/page.tsx
 'use client';
 
 import { useParams } from 'next/navigation';
@@ -6,8 +5,8 @@ import { useEffect, useState } from 'react';
 import BookPage from '@/components/BookPage';
 
 const BookDetails: React.FC = () => {
-  const params = useParams(); // Obtiene los parámetros de la ruta
-  const id = params.id; // Desestructuración del ID
+  const params = useParams(); // Obtén los parámetros de la ruta
+  const { id } = params; // Extrae el parámetro id
 
   const [book, setBook] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
@@ -50,7 +49,7 @@ const BookDetails: React.FC = () => {
 
   return (
     <BookPage
-      key={book.id}
+      id={book.id} // Asegúrate de pasar el id a BookPage
       title={book.volumeInfo.title}
       authors={book.volumeInfo.authors || []}
       publishedDate={book.volumeInfo.publishedDate}

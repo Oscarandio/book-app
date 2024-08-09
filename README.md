@@ -2,6 +2,14 @@
 
 Página de resultados por categoría
 
+Menú hamburguesa mobile
+
+Firebase (Usuarios y Base de datos)
+
+Paginación en resultados
+
+Número total de páginas leídas
+
 # Visión General del Proyecto
 
 ## Descripción de la Aplicación

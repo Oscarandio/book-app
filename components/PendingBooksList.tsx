@@ -2,7 +2,9 @@
 'use client';
 
 import { useBookContext } from '@/context/BookContext';
-import BookCard from './BookCard';
+import Image from 'next/image';
+import Link from 'next/link';
+import BookCardList from './BookCardList';
 
 const PendingBooksList: React.FC = () => {
   const { pendingBooks } = useBookContext();
@@ -11,25 +13,22 @@ const PendingBooksList: React.FC = () => {
     return <p>No hay libros pendientes.</p>;
   }
 
+  const defaultThumbnail = '/default-thumbnail.jpg';
+
   return (
     <section>
-      <h2 className='text-xl'>Libros Pendientes</h2>
-      <ul>
+      <h2 className='text-xl font-bold text-jacaranda'>Pendientes</h2>
+      <section className='flex flex-wrap gap-6'>
         {pendingBooks.map((book) => (
-      
-            <BookCard
-              key={book.id}
-              id={book.id} // Pasa el id a BookCard
+          <>
+            <BookCardList
+              id={book.id}
               title={book.title}
-              authors={book.authors || []}
-              publishedDate={book.publishedDate}
-              thumbnail={book.thumbnail || ''}
-              description={book.description}
-              pageCount={book.pageCount}
+              thumbnail={book.thumbnail}
             />
-        
+          </>
         ))}
-      </ul>
+      </section>
     </section>
   );
 };

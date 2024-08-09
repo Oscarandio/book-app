@@ -11,6 +11,7 @@ interface Book {
   thumbnail: string;
   description: string;
   pageCount: number;
+  publisher: string
 }
 
 interface BookContextType {
