@@ -19,6 +19,10 @@ const config: Config = {
         yellow: "rgb(242, 191, 67)",
         yellowOpacity: "rgb(242 191 67 / 85%)",
       },
+      height: {
+        "custom-height-desktop": "calc(100dvh - 64px)",
+        "custom-height-mobile": "calc(100dvh - 100px)",
+      },
     },
   },
   plugins: [],

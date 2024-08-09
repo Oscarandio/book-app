@@ -28,35 +28,41 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <section className='h-custom-height-mobile md:h-custom-height-desktop grid place-content-center'>
       <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+      <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <div>
-          <label htmlFor='email'>Email:</label>
           <input
+            className='border-jacaranda border-2 rounded p-2 font-medium text-sm'
             type='email'
             id='email'
             value={email}
+            placeholder='Email'
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
         <div>
-          <label htmlFor='password'>Password:</label>
           <input
+            className='border-jacaranda border-2 rounded p-2 font-medium text-sm'
             type='password'
             id='password'
             value={password}
+            placeholder='Contraseña'
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button type='submit' disabled={loading}>
-          {loading ? 'Registering...' : 'Register'}
+        <button
+          className='bg-jacaranda rounded p-2 font-light'
+          type='submit'
+          disabled={loading}
+        >
+          {loading ? "Registrando..." : "Registrarse"}
         </button>
         {error && <p>{error}</p>}
       </form>
-    </div>
+    </section>
   );
 };
 

@@ -4,9 +4,11 @@ Página de resultados por categoría
 
 Firebase (Usuarios y Base de datos)
 
-Paginación en resultados
+Paginación en resultados o carga automática
 
 Número total de páginas leídas
+
+Listas de autores populares
 
 # Visión General del Proyecto
 

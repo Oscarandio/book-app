@@ -70,7 +70,7 @@ const BookList: React.FC = () => {
       <div className='container mx-auto'>
         <SearchInput fetchBooks={fetchBooks} setQuery={setQuery} />
         {Array.isArray(books) && books.length > 0 ? (
-          <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-2 xl:gap-x-12 my-3 xl:my-8'>
+          <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-2 xl:gap-x-12 my-6 xl:my-8'>
             {books.map((book: any) => (
               <BookCard
                 key={book.id}
