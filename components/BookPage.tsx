@@ -55,7 +55,9 @@ const BookPage: React.FC<BookPageProps> = ({
   };
 
   return (
-    <section className='container mx-auto my-12 px-3 text-primary'>
+    <section
+      id='book-page'
+      className='container mx-auto my-12 px-3 text-primary'>
       <article className='flex'>
         <figure className='relative w-28 h-44 flex-shrink-0'>
           <Image

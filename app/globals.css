@@ -32,10 +32,10 @@ body {
   }
 }
 
-p {
+#book-page p {
   margin-block: 24px;
 }
 
-i {
+#book-page i {
   font-weight: 500;
 }

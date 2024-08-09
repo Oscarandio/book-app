@@ -37,7 +37,7 @@ const BookCard: React.FC<BookCardProps> = ({
           />
         </figure>
         <section className='ml-4 text-primary'>
-          <h3 className='line-clamp-2 text-xl font-bold'>
+          <h3 className='line-clamp-1 text-xl font-bold'>
             {title || 'Sin título'}
           </h3>
           <p className='text-sm font-light mt-1 mb-4'>
