@@ -10,7 +10,7 @@ const BookList: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   // Obtén la clave API desde las variables de entorno
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY;
+  const apiKey = process.env.GOOGLE_BOOKS_API_KEY;
 
   // Función para obtener libros basada en la consulta actual
   const fetchBooks = useCallback(

@@ -1,7 +1,8 @@
-// app/context/BookContext.tsx
 'use client';
 
 import { createContext, useContext, useState, ReactNode } from 'react';
+import { db } from '@/lib/firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 interface Book {
   id: string;
@@ -11,7 +12,7 @@ interface Book {
   thumbnail: string;
   description: string;
   pageCount: number;
-  publisher: string
+  publisher: string;
 }
 
 interface BookContextType {
@@ -29,12 +30,22 @@ export const BookProvider: React.FC<{ children: ReactNode }> = ({
   const [readBooks, setReadBooks] = useState<Book[]>([]);
   const [pendingBooks, setPendingBooks] = useState<Book[]>([]);
 
-  const addToReadBooks = (book: Book) => {
+  const addToReadBooks = async (book: Book) => {
     setReadBooks((prevBooks) => [...prevBooks, book]);
+    try {
+      await addDoc(collection(db, 'readBooks'), book); // Guarda en Firestore
+    } catch (error) {
+      console.error('Error adding book to Firestore: ', error);
+    }
   };
 
-  const addToPendingBooks = (book: Book) => {
+  const addToPendingBooks = async (book: Book) => {
     setPendingBooks((prevBooks) => [...prevBooks, book]);
+    try {
+      await addDoc(collection(db, 'pendingBooks'), book); // Guarda en Firestore
+    } catch (error) {
+      console.error('Error adding book to Firestore: ', error);
+    }
   };
 
   return (

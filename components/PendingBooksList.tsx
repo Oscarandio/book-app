@@ -2,8 +2,6 @@
 'use client';
 
 import { useBookContext } from '@/context/BookContext';
-import Image from 'next/image';
-import Link from 'next/link';
 import BookCardList from './BookCardList';
 
 const PendingBooksList: React.FC = () => {
@@ -13,7 +11,6 @@ const PendingBooksList: React.FC = () => {
     return <p>No hay libros pendientes.</p>;
   }
 
-  const defaultThumbnail = '/default-thumbnail.jpg';
 
   return (
     <section>
