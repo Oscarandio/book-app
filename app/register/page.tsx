@@ -1,4 +1,7 @@
 // components/Register.tsx
+
+'use client'
+
 import { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
