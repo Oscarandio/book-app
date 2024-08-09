@@ -14,7 +14,7 @@ const Nav: React.FC<NavProps> = () => {
   };
 
   return (
-    <div className='bg-jacaranda'>
+    <div className='bg-jacaranda text-2xl md:text-base font-medium md:font-light'>
       <nav className='container mx-auto h-16 flex justify-between items-center px-3 md:px-0'>
         <div>
           <Link href='/' aria-label='Home'>
@@ -31,7 +31,8 @@ const Nav: React.FC<NavProps> = () => {
         <ul
           className={`${
             isOpen ? 'block' : 'hidden'
-          } md:flex md:space-y-0 md:space-x-16 absolute md:relative top-16 md:top-0 left-0 space-y-4 w-full md:w-auto bg-jacaranda md:bg-transparent z-10 md:z-auto flex flex-col md:flex-row p-3 md:p-0 le text-2xl md:text-base font-medium`}>
+          } md:flex md:space-y-0 md:space-x-12 absolute md:relative top-16 md:top-0 left-0 space-y-4 w-full md:w-auto
+           bg-jacaranda md:bg-transparent z-10 md:z-auto flex flex-col md:flex-row p-3 md:p-0`}>
           <li className='py-2'>
             <Link href='/'>Home</Link>
           </li>
@@ -40,6 +41,11 @@ const Nav: React.FC<NavProps> = () => {
           </li>
           <li className='py-2'>
             <Link href='/lists'>Listas</Link>
+          </li>
+        </ul>
+        <ul className='hidden md:block'>
+          <li className='py-2'>
+            <Link href='/'>Iniciar sesión</Link>
           </li>
         </ul>
       </nav>
